@@ -1,7 +1,6 @@
-import cookieSession from 'cookie-session';
 import express from 'express';
-import { Server } from 'socket.io';
 import * as http from 'http';
+import { Server } from 'socket.io';
 import { ClientEvents, ServerEvents } from '../src/shared/constants';
 import { Category, RawCategory } from './database/models/category';
 import { Item, RawItem } from './database/models/item';
@@ -10,6 +9,7 @@ import { RawUser, User } from './database/models/user';
 export const app = express();
 const httpServer = http.createServer(app);
 export const socketServer = new Server(httpServer, {
+    perMessageDeflate: false,
     cors: {
         origin: 'http://localhost:3000',
     },
