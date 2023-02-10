@@ -12,7 +12,7 @@ const ItemCard = ({ item, users }: { item: ItemModel; users: UserModel[] }) => {
         completed,
         categoryId,
     } = item;
-    const creatorUser = useMemo(() => users.find((user) => user.id === creatorUserId), []);
+    const creatorUser = useMemo(() => users.find((user) => user.id === creatorUserId), [creatorUserId, users]);
     const updateItem = useItemStore((state) => state.updateItem);
     const titleInputRef = useRef<HTMLInputElement>(null);
     const descriptionInputRef = useRef<HTMLInputElement>(null);
