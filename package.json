@@ -22,7 +22,8 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "server": "nodemon ./server/index.ts -w index.ts",
+        "server-dev": "nodemon ./server/index.ts -w index.ts",
+        "server": "npx ts-node ./server/index.ts",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

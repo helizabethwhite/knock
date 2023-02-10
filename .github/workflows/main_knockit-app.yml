@@ -21,7 +21,7 @@ jobs:
               with:
                   node-version: '18.x'
 
-            - name: npm install, build, and test
+            - name: npm install, build
               run: |
                   npm install
                   npm run build
@@ -47,9 +47,6 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                   name: node-app
-            
-            - name: Unzip artifact for deployment
-              run: unzip release.zip
 
             - name: 'Deploy to Azure Web App'
               id: deploy-to-webapp
@@ -58,4 +55,4 @@ jobs:
                   app-name: 'knockit-app'
                   slot-name: 'Production'
                   publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_51B473F5B91643DA8EFDB27AF02EDA6E }}
-                  package: .
+                  package: release.zip
