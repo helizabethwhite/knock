@@ -14,17 +14,17 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v3
 
             - name: Set up Node.js version
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v2
               with:
                   node-version: '18.x'
 
             - name: npm install, build, and test
               run: |
-                  npm install -g serve
-                  serve -s build
+                  npm install
+                  npm build
 
             - name: Upload artifact for deployment job
               uses: actions/upload-artifact@v2
