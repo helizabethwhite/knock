@@ -21,12 +21,12 @@
         "zustand": "^4.1.2"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "frontend-dev": "REACT_APP_BACKEND_URL=http://localhost react-scripts start",
         "server-dev": "nodemon ./server/index.ts -w index.ts",
-        "server": "npx ts-node ./server/index.ts",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "server-prod": "npx ts-node ./server/index.ts",
+        "build-frontend-dev": "REACT_APP_BACKEND_URL=http://localhost react-scripts build",
+        "build-frontend-prod": "REACT_APP_BACKEND_URL=https://www.knockit-app.azurewebsites.net react-scripts build",
+        "test": "react-scripts test"
     },
     "eslintConfig": {
         "extends": [
