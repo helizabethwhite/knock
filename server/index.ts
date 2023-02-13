@@ -13,18 +13,18 @@ let onlineUserIds: string[] = [];
 export const socketServer = new Server(httpServer, {
     perMessageDeflate: false,
     cors: {
-        origin: `${process.env.APP_BACKEND_URL}:3000`,
+        origin: `${process.env.FRONTEND_URL}`,
     },
 });
 
 app.use(express.json());
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', `${process.env.APP_BACKEND_URL}:3000`);
+    res.header('Access-Control-Allow-Origin', `${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     // res.header('Access-Control-Allow-Credentials', 'true');
     // res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    // res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
     next();
 });
 

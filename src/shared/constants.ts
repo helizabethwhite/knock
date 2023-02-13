@@ -15,6 +15,6 @@ export const ServerEvents = {
     UPDATE_ALL_USERS: 'UPDATE_ALL_USERS',
 };
 
-export const buildRouteName = (endpointSuffix: string) => `${process.env.REACT_APP_BACKEND_URL}:8080${endpointSuffix}`;
+export const buildRouteName = (endpointSuffix: string) => `${process.env.REACT_APP_BACKEND_URL}${endpointSuffix}`;
 
 export const LOCAL_STORAGE_USER_ID_KEY = 'USER_ID';
