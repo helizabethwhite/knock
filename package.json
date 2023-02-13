@@ -22,8 +22,8 @@
     },
     "scripts": {
         "frontend-dev": "REACT_APP_BACKEND_URL=http://localhost react-scripts start",
-        "server-dev": "nodemon ./server/index.ts -w index.ts",
-        "server-prod": "npx ts-node ./server/index.ts",
+        "server-dev": "APP_BACKEND_URL=http://localhost nodemon ./server/index.ts -w index.ts",
+        "server-prod": "APP_BACKEND_URL=https://www.knockit-app.azurewebsites.net npx ts-node ./server/index.ts",
         "build-frontend-dev": "REACT_APP_BACKEND_URL=http://localhost react-scripts build",
         "build-frontend-prod": "REACT_APP_BACKEND_URL=https://www.knockit-app.azurewebsites.net react-scripts build",
         "test": "react-scripts test"

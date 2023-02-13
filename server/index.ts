@@ -8,21 +8,19 @@ import { RawUser, User } from './database/models/user';
 
 export const app = express();
 const httpServer = http.createServer(app);
+let onlineUserIds: string[] = [];
+
 export const socketServer = new Server(httpServer, {
     perMessageDeflate: false,
     cors: {
-        origin: ['http://localhost:3000', 'https://knockit-app.azurewebsites.net'],
+        origin: `${process.env.APP_BACKEND_URL}:3000`,
     },
 });
-let onlineUserIds: string[] = [];
 
 app.use(express.json());
-const corsWhitelist = ['http://localhost:3000', 'https://knockit-app.azurewebsites.net'];
 app.use((req, res, next) => {
-    if (req.headers.origin && corsWhitelist.indexOf(req.headers.origin) !== -1) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin);
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    }
+    res.header('Access-Control-Allow-Origin', `${process.env.APP_BACKEND_URL}:3000`);
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     // res.header('Access-Control-Allow-Credentials', 'true');
     // res.header('Access-Control-Allow-Headers', 'Content-Type');
