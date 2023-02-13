@@ -24,7 +24,7 @@ jobs:
             - name: npm install, build
               run: |
                   npm install
-                  npm run build
+                  npm run build-frontend-prod
 
             - name: Zip artifact for deployment ## save time on uploading/downloading node_modules
               run: zip release.zip ./* -r
