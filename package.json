@@ -23,10 +23,11 @@
     "scripts": {
         "frontend-dev": "REACT_APP_BACKEND_URL=http://localhost:8080 react-scripts start",
         "server-dev": "FRONTEND_URL=http://localhost:3000 nodemon ./server/index.ts -w index.ts",
-        "server-prod": "FRONTEND_URL=https://www.knockit-app.azurewebsites.net:3000 npx ts-node ./server/index.ts",
+        "server-prod": "FRONTEND_URL=https://www.knockit-app.azurewebsites.net:3000 node dist/index.js",
         "build-frontend-dev": "REACT_APP_BACKEND_URL=http://localhost:8080 react-scripts build",
         "build-frontend-prod": "REACT_APP_BACKEND_URL=https://www.knockit-backend.azurewebsites.net:8080 react-scripts build",
-        "test": "react-scripts test"
+        "test": "react-scripts test",
+        "build-server-prod": "cd server && tsc && cd -"
     },
     "eslintConfig": {
         "extends": [
