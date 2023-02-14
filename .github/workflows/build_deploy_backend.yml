@@ -38,7 +38,7 @@ jobs:
         needs: build
         environment:
             name: 'Production'
-            url: ${{ secrets.APP_SERVICE_BACKEND_URL }}
+            url: ${{ vars.APP_SERVICE_BACKEND_URL }}
 
         steps:
             - name: Download artifact from build job
