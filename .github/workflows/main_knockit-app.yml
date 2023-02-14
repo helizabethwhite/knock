@@ -23,8 +23,7 @@ jobs:
 
             - name: npm install, build
               run: |
-                  npm install --only=dev
-                  npm install
+                  npm ci
                   npm run build-frontend-prod
 
             - name: Zip artifact for deployment ## save time on uploading/downloading node_modules
