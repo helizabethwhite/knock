@@ -25,7 +25,7 @@
         "server-dev": "FRONTEND_URL=http://localhost:3000 nodemon ./server/index.ts -w index.ts",
         "server-prod": "FRONTEND_URL=https://knockit-app.azurewebsites.net node dist/server/index.js",
         "build-frontend-dev": "REACT_APP_BACKEND_URL=http://localhost:8080 react-scripts build",
-        "build-frontend-prod": "REACT_APP_BACKEND_URL=https://knockit-backend.azurewebsites.net:8080 react-scripts build",
+        "build-frontend-prod": "REACT_APP_BACKEND_URL=https://knockit-backend.azurewebsites.net react-scripts build",
         "test": "react-scripts test",
         "build-server-prod": "cd server && tsc && cd -"
     },
