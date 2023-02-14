@@ -50,7 +50,7 @@ jobs:
               id: deploy-to-webapp
               uses: azure/webapps-deploy@v2
               with:
-                  app-name: 'knockit-app-backend'
+                  app-name: 'knockit-backend'
                   slot-name: 'Production'
                   publish-profile: ${{ secrets.APP_SERVICE_BACKEND_PUBLISH_PROFILE }}
                   package: backend.zip
