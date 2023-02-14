@@ -19,11 +19,11 @@ jobs:
             - name: Set up Node.js version
               uses: actions/setup-node@v2
               with:
-                  node-version: '18.x'
+                  node-version: '16.x'
 
             - name: npm install
               run: |
-                  npm install --include=dev
+                  npm ci --include=dev
 
             - name: Zip backend-end artifact for deployment ## save time on uploading/downloading node_modules
               run: zip backend.zip ./* -r
