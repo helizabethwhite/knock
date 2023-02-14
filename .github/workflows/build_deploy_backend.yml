@@ -30,7 +30,7 @@ jobs:
                   npm run build-server-prod
 
             - name: Zip backend-end artifact for deployment ## save time on uploading/downloading node_modules
-              run: zip backend.zip ./dist -r
+              run: zip backend.zip ./* -r
 
             - name: Upload artifact for deployment job (back-end)
               uses: actions/upload-artifact@v2
