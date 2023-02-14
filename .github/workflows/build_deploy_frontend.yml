@@ -1,0 +1,57 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy React app to Azure Web App - knockit-app
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Set up Node.js version
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '18.x'
+
+            - name: npm install, build
+              run: |
+                  npm install
+                  npm run build-frontend-prod
+
+            - name: Zip front-end artifact for deployment ## save time on uploading/downloading node_modules
+              run: zip frontend.zip ./build -r
+
+            - name: Upload artifact for deployment job (front-end)
+              uses: actions/upload-artifact@v2
+              with:
+                  name: react-app
+                  path: frontend.zip
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+        environment:
+            name: 'Production'
+            url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+        steps:
+            - name: Download artifact from build job
+              uses: actions/download-artifact@v2
+              with:
+                  name: react-app
+
+            - name: 'Deploy to Azure Web App (frontend)'
+              id: deploy-to-webapp
+              uses: azure/webapps-deploy@v2
+              with:
+                  app-name: 'knockit-app'
+                  slot-name: 'Production'
+                  publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_51B473F5B91643DA8EFDB27AF02EDA6E }}
+                  package: frontend.zip
