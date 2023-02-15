@@ -1,5 +1,7 @@
+import React from 'react';
 import { useMemo, useRef, useState } from 'react';
 import { ItemModel, UserModel } from '../../shared/types';
+import './ItemCard.css';
 import { useItemStore } from './itemStore';
 
 const ItemCard = ({ item, users }: { item: ItemModel; users: UserModel[] }) => {

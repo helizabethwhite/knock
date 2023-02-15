@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import './index.css';
 import { subscribeCategoryStoreToSocketUpdates } from './slices/categories/categoryStore';
 import { subscribeItemStoreToSocketUpdates } from './slices/items/itemStore';
-import { subscribeUserStoreToSocketUpdates } from './slices/users/userStore';
+import UserSelect from './slices/users/UserSelect';
+import { subscribeUserStoreToSocketUpdates, useUserStore } from './slices/users/userStore';
+import TodoListApp from './TodoListApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 subscribeUserStoreToSocketUpdates();
@@ -16,7 +17,16 @@ root.render(
     </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
+function App() {
+    const activeUserId = useUserStore((state) => state.activeUserId);
+    const users = useUserStore((state) => state.users);
+    const currentUser = React.useMemo(() => users.find((user) => user.id === activeUserId), [users, activeUserId]);
+
+    if (!currentUser) {
+        return <UserSelect />;
+    }
+
+    return <TodoListApp currentUser={currentUser} />;
+}
+
+export default App;

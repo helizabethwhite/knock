@@ -1,8 +1,8 @@
 import axios from 'axios';
-import create from 'zustand';
+import { create } from 'zustand';
 import { buildRouteName, ClientEvents, LOCAL_STORAGE_USER_ID_KEY, ServerEvents } from '../../shared/constants';
+import { socket } from '../../shared/socket';
 import { UserModel } from '../../shared/types';
-import { socket } from '../../socket';
 
 export interface UserStoreState {
     activeUserId: string;

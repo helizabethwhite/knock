@@ -1,8 +1,8 @@
 import axios from 'axios';
-import create from 'zustand';
+import { create } from 'zustand';
 import { buildRouteName, ClientEvents, ServerEvents } from '../../shared/constants';
+import { socket } from '../../shared/socket';
 import { CategoryModel } from '../../shared/types';
-import { socket } from '../../socket';
 
 export interface CategoryStoreState {
     categories: CategoryModel[];

@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from '../../shared/components/button/Button';
+import './UserSelect.css';
 import { useUserStore } from './userStore';
 
-const Authorization = () => {
+const UserSelect = () => {
     const users = useUserStore((state) => state.users);
     const activeUserId = useUserStore((state) => state.activeUserId);
     const logIn = useUserStore((state) => state.logIn);
@@ -45,4 +46,4 @@ const Authorization = () => {
     );
 };
 
-export default Authorization;
+export default UserSelect;

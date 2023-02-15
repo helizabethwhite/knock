@@ -1,12 +1,149 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#root {
+    flex-direction: column;
+    display: flex;
+    max-width: 100%;
+    height: calc(100vh - 20px);
+    margin: 10px;
+}
+
+:root {
+    --primary-text-color: black;
+    --primary-bg-color: #f2f1f1;
+    --secondary-bg-color: white;
+    --tertiary-bg-color: #f9f2f3;
+    --quaternary-bg-color: #f9e09f85;
+
+    --primary-border-color: #e5e5e5;
+    --secondary-border-color: #85736f;
+
+    --button-primary-bg-color: var(--secondary-bg-color);
+    --button-primary-text-color: var(--primary-text-color);
+    --button-secondary-bg-color: #ffdad2;
+    --button-secondary-text-color: #534340;
+    --button-tertiary-text-color: var(--button-primary-bg-color);
+
+    --button-theme-switcher-bg-color: #362f2d;
+    --button-theme-switcher-text-color: var(--primary-bg-color);
+    --button-checkbox-bg-color: var(--secondary-bg-color);
+}
+
+[data-theme='dark'] {
+    --primary-text-color: #ede0dd;
+    --primary-bg-color: #201a19;
+    --secondary-bg-color: #282221;
+    --tertiary-bg-color: #5f3f37;
+    --quaternary-bg-color: #534340;
+
+    --secondary-border-color: var(--secondary-bg-color);
+
+    --button-secondary-bg-color: #554512;
+    --button-secondary-text-color: #f9e09f;
+
+    --button-theme-switcher-bg-color: var(--primary-text-color);
+    --button-theme-switcher-text-color: var(--primary-bg-color);
+    --button-checkbox-bg-color: #a9918d;
+}
+
+html {
+    background: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    fill: var(--primary-text-color);
+}
+
+svg {
+    overflow: visible;
+}
+
+label {
+    margin-bottom: 4px;
+    font-size: smaller;
+}
+
+input,
+select {
+    border-radius: 4px;
+    border: 1px solid;
+    border-color: rgb(26 28 30 / 0.6);
+    padding: 4px 6px;
+    font-style: normal;
+}
+
+input:focus {
+    outline: none;
+}
+
+p {
+    margin: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.align-items-c {
+    align-items: center;
+}
+
+.center {
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mr-1 {
+    margin-right: 8px;
+}
+.mr-2 {
+    margin-right: 16px;
+}
+
+.mt-2 {
+    margin-top: 16px;
+}
+.mb-1 {
+    margin-bottom: 8px;
+}
+
+.mb-2 {
+    margin-bottom: 16px;
+}
+
+.ml-1 {
+    margin-left: 8px;
+}
+
+.ml-2 {
+    margin-left: 16px;
+}
+
+.font-small {
+    font-size: small;
+}
+
+.font-xl {
+    font-size: x-large;
+}
+button.mode-switcher:hover {
+    background: var(--button-theme-switcher-bg-color);
+    color: var(--button-theme-switcher-text-color);
+    fill: var(--button-theme-switcher-text-color);
+}
+
+.b {
+    font-weight: bold;
 }

@@ -1,0 +1,81 @@
+.item-card {
+    background: var(--tertiary-bg-color);
+    height: 10rem;
+    margin: 6px;
+    padding: 6px;
+    color: var(--primary-text-color);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.item-card.creating form {
+    display: grid;
+    height: 100%;
+    align-items: start;
+    align-content: space-between;
+}
+
+.item-card input {
+    background: none;
+    border: none;
+    width: 95%;
+    color: var(--primary-text-color);
+}
+
+.item-card input::placeholder {
+    color: var(--primary-text-color);
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+.item-card.completed {
+    opacity: 35%;
+}
+
+.item-card input:focus-visible {
+    border: none;
+    outline: none;
+}
+
+.item-card.creating {
+    background: var(--quaternary-bg-color);
+    color: var(--primary-text-color);
+}
+
+button.check-box {
+    border: 2px solid var(--secondary-border-color);
+    height: 16px;
+    width: 16px;
+    background: var(--button-checkbox-bg-color);
+    line-height: 8px;
+    padding: 0;
+    cursor: pointer;
+}
+
+button.check-box:hover::after {
+    content: url('../../shared/components/icons/Checkmark.svg');
+    fill: var(--primary-text-color);
+}
+.item-card button.check-box.completed:hover::after {
+    content: ' ';
+}
+button.check-box.completed::after,
+.item-card button.check-box.completed:active:hover::after {
+    content: url('../../shared/components/icons/Checkmark.svg');
+    fill: var(--primary-text-color);
+}
+
+.item-card input.title {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.attribution {
+    font-style: italic;
+    font-size: small;
+}

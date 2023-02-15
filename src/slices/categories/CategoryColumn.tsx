@@ -5,6 +5,7 @@ import CreateItemCard from '../items/CreateItemCard';
 import ItemCard from '../items/ItemCard';
 import { useItemStore } from '../items/itemStore';
 import { useUserStore } from '../users/userStore';
+import './CategoryColumn.css';
 import { useCategoryStore } from './categoryStore';
 
 const CategoryColumn = (category: CategoryModel) => {

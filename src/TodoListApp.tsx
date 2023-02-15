@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Button from '../../shared/components/button/Button';
-import { SunIcon } from '../../shared/components/icons/Sun';
-import { CategoryModel, UserModel } from '../../shared/types';
-import LogOut from '../users/Logout';
-import CategoryColumn from './CategoryColumn';
-import { useCategoryStore } from './categoryStore';
+import Button from './shared/components/button/Button';
+import { SunIcon } from './shared/components/icons/Sun';
+import { CategoryModel, UserModel } from './shared/types';
+import CategoryColumn from './slices/categories/CategoryColumn';
+import { useCategoryStore } from './slices/categories/categoryStore';
+import LogOut from './slices/users/Logout';
 
-const TodoList = ({ currentUser }: { currentUser: UserModel }) => {
+const TodoListApp = ({ currentUser }: { currentUser: UserModel }) => {
     const categories: CategoryModel[] = useCategoryStore((state) => state.categories);
-    const [theme, setTheme] = useState('light'); // TO DO: put me in local storage for session persistence
+    const [theme, setTheme] = useState('light'); // TO DO: put me in local storage for session persistence?
     const createCategory = useCategoryStore((state) => state.createCategory);
     const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -37,7 +37,6 @@ const TodoList = ({ currentUser }: { currentUser: UserModel }) => {
                                 setIsCreatingNewCategory(true);
                                 return;
                             } else if (inputRef.current?.value) {
-                                console.log('about to create category', inputRef.current.value);
                                 createCategory(inputRef.current.value);
                                 inputRef.current.value = '';
                             }
@@ -84,4 +83,4 @@ const TodoList = ({ currentUser }: { currentUser: UserModel }) => {
     );
 };
 
-export default TodoList;
+export default TodoListApp;

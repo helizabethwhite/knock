@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from '../../shared/components/button/Button';
 import { UserModel } from '../../shared/types';
 import { useUserStore } from './userStore';
