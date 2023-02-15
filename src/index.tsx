@@ -21,7 +21,7 @@ function App() {
     const activeUserId = useUserStore((state) => state.activeUserId);
     const users = useUserStore((state) => state.users);
     const currentUser = React.useMemo(() => users.find((user) => user.id === activeUserId), [users, activeUserId]);
-
+    console.log('Hello world');
     if (!currentUser) {
         return <UserSelect />;
     }
