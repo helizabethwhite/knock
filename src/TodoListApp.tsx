@@ -8,7 +8,7 @@ import LogOut from './slices/users/Logout';
 
 const TodoListApp = ({ currentUser }: { currentUser: UserModel }) => {
     const categories: CategoryModel[] = useCategoryStore((state) => state.categories);
-    const [theme, setTheme] = useState('light'); // TO DO: put me in local storage for session persistence?
+    const [theme, setTheme] = useState('light');
     const createCategory = useCategoryStore((state) => state.createCategory);
     const inputRef = React.useRef<HTMLInputElement>(null);
 

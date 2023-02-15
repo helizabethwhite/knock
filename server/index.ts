@@ -21,13 +21,13 @@ app.use(express.json());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', `${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-    // res.header('Access-Control-Allow-Credentials', 'true');
-    // res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Methods', 'POST, OPTIONS, DELETE');
     next();
 });
 
+/**
+ * SOCKET EVENTS
+ */
 export const fetchAndEmitUsers = async () => {
     const users = await User.getAll();
     socketServer.emit(
@@ -39,6 +39,27 @@ export const fetchAndEmitUsers = async () => {
     );
 };
 
+export const fetchAndEmitCategories = async () => {
+    const categories = await Category.getAll();
+    socketServer.emit(ServerEvents.UPDATE_ALL_CATEGORIES, categories);
+};
+
+export const fetchAndEmitItems = async () => {
+    const items = await Item.getAll();
+    socketServer.emit(ServerEvents.UPDATE_ALL_ITEMS, items);
+};
+
+socketServer.sockets.on('connection', (socket) => {
+    socket.on(ClientEvents.FETCH_ALL_USERS, () => fetchAndEmitUsers());
+    socket.on(ClientEvents.FETCH_ALL_CATEGORIES, () => fetchAndEmitCategories());
+    socket.on(ClientEvents.FETCH_ALL_ITEMS, () => fetchAndEmitItems());
+});
+
+/**
+ *
+ * ROUTES
+ *
+ */
 app.post('/login', (req, res) => {
     const { id } = req.body;
     res.locals.userId = id;
@@ -67,17 +88,6 @@ app.post('/users', async (req, res) => {
     res.status(200).send();
 });
 
-socketServer.sockets.on('connection', (socket) => {
-    socket.on(ClientEvents.FETCH_ALL_USERS, () => fetchAndEmitUsers());
-    socket.on(ClientEvents.FETCH_ALL_CATEGORIES, () => fetchAndEmitCategories());
-    socket.on(ClientEvents.FETCH_ALL_ITEMS, () => fetchAndEmitItems());
-});
-
-export const fetchAndEmitCategories = async () => {
-    const categories = await Category.getAll();
-    socketServer.emit(ServerEvents.UPDATE_ALL_CATEGORIES, categories);
-};
-
 app.post('/categories', async (req, res) => {
     const { name } = req.body;
     const category = new Category({ name } as RawCategory);
@@ -93,11 +103,6 @@ app.delete('/categories/:id', async (req, res) => {
     fetchAndEmitCategories();
     res.status(200).send();
 });
-
-export const fetchAndEmitItems = async () => {
-    const items = await Item.getAll();
-    socketServer.emit(ServerEvents.UPDATE_ALL_ITEMS, items);
-};
 
 app.post('/items', async (req, res) => {
     const { title, description, creatorUserId, categoryId } = req.body;
@@ -116,6 +121,9 @@ app.post('/items/:id', async (req, res) => {
     res.status(200).send();
 });
 
+/**
+ * SERVER START
+ */
 httpServer.listen(process.env.PORT || 8080, function () {
     console.log(`listening on *:${process.env.PORT || 8080}`);
 });
