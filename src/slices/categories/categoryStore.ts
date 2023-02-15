@@ -8,6 +8,7 @@ export interface CategoryStoreState {
     categories: CategoryModel[];
     setCategories: (categories: CategoryModel[]) => void;
     createCategory: (name: string) => Promise<void>;
+    deleteCategory: (id: string) => Promise<void>;
 }
 
 export const useCategoryStore = create<CategoryStoreState>((set) => ({
@@ -15,6 +16,9 @@ export const useCategoryStore = create<CategoryStoreState>((set) => ({
     setCategories: (categories: CategoryModel[]) => set({ categories }),
     createCategory: async (name: string) => {
         await axios.post(buildRouteName('/categories'), { name });
+    },
+    deleteCategory: async (id: string) => {
+        await axios.delete(buildRouteName(`/categories/${id}`));
     },
 }));
 

@@ -29,8 +29,9 @@ button.icon.small {
 button.large {
     background-color: var(--button-secondary-bg-color);
     color: var(--button-secondary-text-color);
-    padding: 8px 12px;
-    font-size: 16px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 18px;
     border: 1px solid var(--secondary-border-color);
 }
 
@@ -38,14 +39,11 @@ button.small {
     border-radius: 6px;
     padding: 6px 8px;
     font-size: 12px;
-    width: fit-content;
-    height: fit-content;
 }
 
 button.cancel {
     background-color: #a03f28;
     color: var(--button-tertiary-text-color);
-    margin-left: 16px;
     border: 1px solid #632719;
 }
 

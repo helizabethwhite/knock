@@ -30,7 +30,7 @@ export class Category {
         return db
             .find<RawCategory>({})
             .then((rawCategories: RawCategory[]) =>
-                sortByCreation(rawCategories).map((rawCategory) => new Category(rawCategory as RawCategory))
+                sortByCreation(rawCategories, true).map((rawCategory) => new Category(rawCategory as RawCategory))
             );
     }
 
@@ -42,6 +42,10 @@ export class Category {
         return db.update({ _id: this.id }, this.serialize(), { upsert: true });
     }
 
+    delete() {
+        return db.remove({ _id: this.id }, {});
+    }
+
     serialize(): CategoryModel {
         return {
             id: this.id,
@@ -50,5 +54,3 @@ export class Category {
         };
     }
 }
-
-

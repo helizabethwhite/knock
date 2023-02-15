@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     // res.header('Access-Control-Allow-Credentials', 'true');
     // res.header('Access-Control-Allow-Headers', 'Content-Type');
-    // res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'POST, OPTIONS, DELETE');
     next();
 });
 
@@ -82,6 +82,14 @@ app.post('/categories', async (req, res) => {
     const { name } = req.body;
     const category = new Category({ name } as RawCategory);
     await category.save();
+    fetchAndEmitCategories();
+    res.status(200).send();
+});
+
+app.delete('/categories/:id', async (req, res) => {
+    const { id } = req.params;
+    const item = new Category({ _id: id, ...req.body } as RawCategory);
+    await item.delete();
     fetchAndEmitCategories();
     res.status(200).send();
 });

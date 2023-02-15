@@ -25,47 +25,56 @@ const TodoList = ({ currentUser }: { currentUser: UserModel }) => {
 
     return (
         <>
-            <div className='header'>
+            <div className='header mb-1'>
                 <LogOut currentUser={currentUser} />
                 <p className='b font-xl'>Knock 'em out!</p>
-                <form
-                    onSubmit={(event) => {
-                        event.preventDefault();
-                        console.log('submitted');
-                        if (!isCreatingNewCategory) {
-                            setIsCreatingNewCategory(true);
-                            return;
-                        } else if (inputRef.current?.value) {
-                            console.log('about to create category', inputRef.current.value);
-                            createCategory(inputRef.current.value);
-                            inputRef.current.value = '';
-                        }
-                        setIsCreatingNewCategory(false);
-                    }}
-                >
-                    <div className='flex'>
-                        {isCreatingNewCategory && <input type='text' ref={inputRef} />}
-                        <Button size='large' type='submit' content={isCreatingNewCategory ? 'Done' : '+ Category'} />
-                        {isCreatingNewCategory && (
+                <div className='flex'>
+                    <form
+                        onSubmit={(event) => {
+                            event.preventDefault();
+                            console.log('submitted');
+                            if (!isCreatingNewCategory) {
+                                setIsCreatingNewCategory(true);
+                                return;
+                            } else if (inputRef.current?.value) {
+                                console.log('about to create category', inputRef.current.value);
+                                createCategory(inputRef.current.value);
+                                inputRef.current.value = '';
+                            }
+                            setIsCreatingNewCategory(false);
+                        }}
+                    >
+                        <div className='flex'>
+                            {isCreatingNewCategory && (
+                                <input type='text' placeholder='Enter category name' ref={inputRef} />
+                            )}
                             <Button
                                 size='large'
-                                type='cancel'
-                                content='Cancel'
-                                onClick={() => setIsCreatingNewCategory(false)}
+                                classList='ml-1'
+                                type='submit'
+                                content={isCreatingNewCategory ? 'Done' : '+ Category'}
                             />
-                        )}
-                    </div>
-                </form>
-                <Button
-                    classList='ml-2 mode-switcher'
-                    border={false}
-                    type='submit'
-                    size='small'
-                    content={theme === 'light' ? '🌙' : <SunIcon />}
-                    // content='🌙'
-                    onClick={switchTheme}
-                    title='Switch modes'
-                />
+                            {isCreatingNewCategory && (
+                                <Button
+                                    size='large'
+                                    type='cancel'
+                                    content='Cancel'
+                                    classList='ml-1'
+                                    onClick={() => setIsCreatingNewCategory(false)}
+                                />
+                            )}
+                        </div>
+                    </form>
+                    <Button
+                        classList='ml-2 mode-switcher'
+                        border={false}
+                        type='submit'
+                        size='small'
+                        content={theme === 'light' ? '🌙' : <SunIcon />}
+                        onClick={switchTheme}
+                        title='Switch modes'
+                    />
+                </div>
             </div>
 
             <div className='categories'>

@@ -14,7 +14,7 @@ const Button = ({ type = 'icon', size = 'small', content, onClick, title, border
     return (
         <button
             title={title}
-            className={`${type} ${size} ${border === false ? 'no-border' : ''} ${classList}`}
+            className={`${type} ${size} ${border === false ? 'no-border' : ''} ${classList ?? ''}`}
             onClick={onClick}
             type={type === 'submit' ? 'submit' : 'button'}
         >

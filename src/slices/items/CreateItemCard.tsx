@@ -33,16 +33,16 @@ const CreateItemCard = ({
             >
                 <input
                     className='title'
-                    placeholder='Item title'
+                    placeholder='Enter item title'
                     value={title}
                     onChange={(e) => setTitle(e.currentTarget.value)}
                 />
                 <input
-                    placeholder='Description'
+                    placeholder='Enter description'
                     onChange={(e) => setDescription(e.currentTarget.value)}
                     value={description}
                 />
-                <Button type='submit' size='small' content='Create' />
+                <Button type='submit' content='Create' />
             </form>
         </div>
     );

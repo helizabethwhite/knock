@@ -75,6 +75,13 @@ html {
     margin-right: 16px;
 }
 
+.mt-2 {
+    margin-top: 16px;
+}
+.mb-1 {
+    margin-bottom: 8px;
+}
+
 .mb-2 {
     margin-bottom: 16px;
 }
@@ -133,6 +140,7 @@ select {
     border: 1px solid;
     border-color: rgb(26 28 30 / 0.6);
     padding: 4px 6px;
+    font-style: normal;
 }
 
 input:focus {
@@ -144,6 +152,7 @@ input:focus {
     color: var(--primary-text-color);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 5px;
 }
 
@@ -176,16 +185,11 @@ input:focus {
     height: 30px;
 }
 
-.header form {
-    align-self: flex-end;
-    margin-bottom: 10px;
-}
-
 .categories {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: calc(50% - 20px * 2);
-    grid-gap: 20px;
+    grid-auto-columns: calc(50% - 12px * 2);
+    grid-gap: 16px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -213,15 +217,19 @@ input:focus {
     align-content: space-between;
 }
 
-.item-card input::placeholder {
-    font-style: italic;
-}
-
 .item-card input {
     background: none;
     border: none;
     width: 95%;
     color: var(--primary-text-color);
+}
+
+.item-card input::placeholder {
+    color: var(--primary-text-color);
+}
+
+input:focus::placeholder {
+    color: transparent;
 }
 
 .item-card.completed {
@@ -248,14 +256,15 @@ button.check-box {
     cursor: pointer;
 }
 
-button.check-box.completed::after {
+button.check-box:hover::after {
     content: url('./shared/components/icons/Checkmark.svg');
     fill: var(--primary-text-color);
 }
 .item-card button.check-box.completed:hover::after {
     content: ' ';
 }
-button.check-box:hover::after {
+button.check-box.completed::after,
+.item-card button.check-box.completed:active:hover::after {
     content: url('./shared/components/icons/Checkmark.svg');
     fill: var(--primary-text-color);
 }
@@ -268,4 +277,13 @@ button.check-box:hover::after {
 .attribution {
     font-style: italic;
     font-size: small;
+}
+
+svg {
+    overflow: visible;
+}
+
+.empty {
+    font-size: smaller;
+    text-align: left;
 }
