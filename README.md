@@ -1,6 +1,8 @@
-# Knock It!
+# Knock It OUT!
 
 https://knockit-app.azurewebsites.net/
+
+A simple todo list app that literally anyone can use.
 
 ## Local development
 
