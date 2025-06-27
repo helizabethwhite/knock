@@ -1,8 +1,8 @@
 # Knock It OUT!
 
-https://knockit-app.azurewebsites.net/
+https://knockit-app.azurewebsites.net/ (FYI, this may be an extremely cold start - just give it a minute!!)
 
-A simple todo list app that literally anyone can use.
+A simple todo list app that _literally_ anyone can use.
 
 ## Local development
 
@@ -14,6 +14,6 @@ In the project directory, run the following to start the frontend:
 
 ### Backend
 
-Alternatively, run the following comment to start the backend:
+Run the following comment to start the backend:
 
 `npm run server-dev`
